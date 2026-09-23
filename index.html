@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTRUP — Premium Personal Finance Studio</title>
+    <meta name="description" content="CTRUP is a premium personal finance and investment tracking studio built for thoughtful investors who want clarity, control, and privacy.">
+    <style>
+        :root {
+            --bg: #0b0f17;
+            --surface: #111827;
+            --surface-2: #1a2233;
+            --line: #1f2a3d;
+            --text: #e6edf7;
+            --muted: #94a3b8;
+            --accent: #f5b342;
+            --accent-2: #f59e0b;
+            --success: #34d399;
+            --danger: #ef4444;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-2); }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .nav { position: sticky; top: 0; z-index: 50; background: rgba(11,15,23,0.85); backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--line); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .brand { font-weight: 700; letter-spacing: 2px; font-size: 18px; color: var(--text); }
+        .brand span { color: var(--accent); }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--muted); font-size: 14px; }
+        .nav-links a:hover { color: var(--text); }
+        .hero { padding: 96px 0 80px; text-align: center; background: radial-gradient(1200px 600px at 50% -10%, rgba(245,179,66,0.12), transparent 60%); }
+        .badge { display: inline-block; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+        h1 { font-size: 56px; line-height: 1.1; margin: 24px 0 16px; letter-spacing: -1px; }
+        h1 .accent { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .lead { color: var(--muted); font-size: 18px; max-width: 720px; margin: 0 auto 32px; }
+        .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 15px; transition: transform .15s ease; }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-primary { background: var(--accent); color: #1a1300; }
+        .btn-primary:hover { background: var(--accent-2); color: #1a1300; }
+        .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+        .btn-ghost:hover { border-color: var(--accent); }
+        .hero-mock { margin: 64px auto 0; max-width: 900px; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+        section { padding: 80px 0; border-top: 1px solid var(--line); }
+        .section-title { text-align: center; margin-bottom: 48px; }
+        .section-title h2 { font-size: 36px; letter-spacing: -0.5px; margin-bottom: 12px; }
+        .section-title p { color: var(--muted); max-width: 600px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; transition: border-color .2s ease; }
+        .card:hover { border-color: var(--accent); }
+        .card .icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(245,179,66,0.12); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
+        .card h3 { font-size: 18px; margin-bottom: 8px; }
+        .card p { color: var(--muted); font-size: 14px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .feature { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+        .feature h4 { color: var(--accent); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+        .feature p { color: var(--text); font-size: 15px; }
+        .privacy-banner { background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(245,179,66,0.08)); border: 1px solid var(--line); border-radius: 20px; padding: 48px; text-align: center; }
+        .privacy-banner h2 { font-size: 32px; margin-bottom: 12px; }
+        .privacy-banner p { color: var(--muted); max-width: 640px; margin: 0 auto 24px; }
+        .footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 14px; }
+        .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+        .footer a { color: var(--muted); margin-left: 16px; }
+        .footer a:hover { color: var(--accent); }
+        @media (max-width: 640px) {
+            h1 { font-size: 38px; }
+            .nav-links { display: none; }
+            .hero { padding: 64px 0 48px; }
+            section { padding: 56px 0; }
+            .privacy-banner { padding: 32px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">CTR<span>UP</span></a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#privacy">Privacy</a>
+                <a href="support.html">Support</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <span class="badge">Personal Finance Studio · iPhone</span>
+            <h1>Your money, in <span class="accent">perfect focus.</span></h1>
+            <p class="lead">CTRUP is a premium personal finance and investment tracking studio built for thoughtful investors who want clarity, control, and privacy. Every dollar, every asset, every goal — at a glance.</p>
+            <div class="cta-row">
+                <a href="#features" class="btn btn-primary">Explore Features</a>
+                <a href="support.html" class="btn btn-ghost">Contact Support</a>
+            </div>
+            <div class="hero-mock">
+                <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Elegant%20dark%20mode%20iPhone%20finance%20app%20dashboard%20with%20net%20worth%20chart%2C%20expense%20donut%20chart%2C%20savings%20progress%20rings%2C%20modern%20minimal%20UI%2C%20gold%20accent%20color%2C%20premium%20look&image_size=portrait_16_9" alt="CTRUP dashboard preview">
+            </div>
+        </div>
+    </header>
+
+    <section id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Built for serious money management</h2>
+                <p>A complete studio for tracking cash flow, budgets, goals, and investments — all on your device.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">📊</div>
+                    <h3>Live Dashboard</h3>
+                    <p>Net worth, cash flow trend, savings pulse, and expense breakdown — all rendered with custom interactive SwiftUI charts.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">💳</div>
+                    <h3>Smart Transactions</h3>
+                    <p>30+ categories, receipt photos from camera or library, transfers, and rich search annotations for the entire transaction log.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🎯</div>
+                    <h3>Budgets that Rollover</h3>
+                    <p>Track spending by category or overall, with weekly, monthly, yearly, or custom periods — leftover funds carry forward.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📈</div>
+                    <h3>Investment Studio</h3>
+                    <p>Track stocks, ETFs, bonds, funds, REITs, and crypto. Interactive price history with crosshairs from one week to all time.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🏆</div>
+                    <h3>Goals with Deadlines</h3>
+                    <p>Contribute or withdraw with a tap, watch progress rings fill as you move toward a down payment, dream trip, or emergency buffer.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📤</div>
+                    <h3>Export Anywhere</h3>
+                    <p>Monthly summaries as CSV to share with an accountant or keep for your records. Reports break down categories and net cash flow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacy">
+        <div class="container">
+            <div class="privacy-banner">
+                <h2>Private by design.</h2>
+                <p>CTRUP runs entirely on device. No account, no login, no cloud sync, no analytics, and no background tracking. Your financial data stays where it belongs — with you, on your iPhone, encrypted by the system.</p>
+                <a href="privacy.html" class="btn btn-primary">Read the Privacy Policy</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Everything in one studio</h2>
+                <p>Designed for iPhone with hand-tuned SwiftUI components engineered for performance.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <h4>Dashboard</h4>
+                    <p>Net worth, cash flow, savings pulse, expense donut, goal progress cards.</p>
+                </div>
+                <div class="feature">
+                    <h4>Transactions</h4>
+                    <p>Add, edit, search, attach photos, transfer between accounts.</p>
+                </div>
+                <div class="feature">
+                    <h4>Budgets</h4>
+                    <p>Category and overall spending, weekly to yearly, with rollover.</p>
+                </div>
+                <div class="feature">
+                    <h4>Investments</h4>
+                    <p>Stocks, ETFs, bonds, funds, REITs, crypto with price history.</p>
+                </div>
+                <div class="feature">
+                    <h4>Goals</h4>
+                    <p>Savings targets with deadlines and progress rings.</p>
+                </div>
+                <div class="feature">
+                    <h4>Analytics</h4>
+                    <p>Category breakdown, savings rate, and net cash flow insights.</p>
+                </div>
+                <div class="feature">
+                    <h4>Reports</h4>
+                    <p>Monthly summaries ready to export as CSV.</p>
+                </div>
+                <div class="feature">
+                    <h4>Accounts</h4>
+                    <p>Manage checking, savings, credit, cash, and investment accounts.</p>
+                </div>
+                <div class="feature">
+                    <h4>Settings</h4>
+                    <p>Theme, currency, haptics, and full data export.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div>© 2026 CTRUP. All rights reserved.</div>
+            <div>
+                <a href="privacy.html">Privacy</a>
+                <a href="support.html">Support</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="mailto:karlawsokunevajob68@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
